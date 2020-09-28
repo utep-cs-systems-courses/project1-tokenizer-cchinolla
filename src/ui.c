@@ -22,7 +22,7 @@ int main(){
     switch(choice){
     case 't':
       printf("Enter string: ");
-      scanf("%s", string);
+      scanf("%s", &string);
       char **tokens = tokenize(string);
       printf("\n");
       print_tokens(tokens);
@@ -41,8 +41,8 @@ int main(){
       break;
     case 'i':
       printf("Enter specific id: ");
-      scanf("%d",input);
-      char **token = tokenize(get_history(list, input));
+      scanf("%d",&input);
+      char **token = tokenize(get_history(history, input));
       print_tokens(token);
       free_tokens(token);
       break;
