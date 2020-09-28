@@ -1,6 +1,7 @@
-#ifndef _HISTORY_
-#define _HISTORY_
-
+#include "tokenizer.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "history.h" 
 
 /*Initialize the linked list to keep the history. */
 List  *init_history(){
@@ -59,5 +60,3 @@ void free_history(List *list){
   }
   free(list);
 }
-
-#endif
