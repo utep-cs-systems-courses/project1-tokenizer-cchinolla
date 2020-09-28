@@ -1,15 +1,6 @@
 #ifndef _HISTORY_
 #define _HISTORY_
 
-typedef struct s_Item{
-  int id;
-  char *str;
-  struct s_Item *next;
-} Item;
-
-typedef struct s_List{
-  struct s_Item *root;
-} List;
 
 /*Initialize the linked list to keep the history. */
 List  *init_history(){
@@ -30,7 +21,7 @@ void add_history(List *list, char *str){
     count++;
     temp = temp->next;
   }
-  temp->next = malloc(sizzeof(Item));
+  temp->next = malloc(sizeof(Item));
   temp->id = count;
   temp->str = str;
   
@@ -45,7 +36,7 @@ char *get_history(List *list, int id){
     if(curr->id == id){
       return curr->str;
     }
-    curr = curr.next;
+    curr = curr->next;
 }
   return NULL;
 }
@@ -68,4 +59,5 @@ void free_history(List *list){
   }
   free(list);
 }
+
 #endif

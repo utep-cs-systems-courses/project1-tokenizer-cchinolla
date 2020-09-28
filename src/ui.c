@@ -1,30 +1,32 @@
-#include <stdlib.h>
 #include <stdio.h>
-#include "tokenizer.h"
-#include "history.h"
+#include "tokenizer.c"
+#include "history.c"
 
 int main(){
-
   List *history = init_history();
+  char choice;
+  int input;
+  char string[100];
   int x = 0;
+  while(x == 0){
   printf("Welcome to Tokenizer...\n");
   printf("______________________________________\n");
   printf("Here are your options\n");
   printf("Press 't' to TOKENIZE\n");
   printf("Press 'h' to VIEW HISTORY\n");
   printf("Press 'i' to VIEW HISTORY AT SPECIFIC ID\n");
-  printf("Press '0' to EXIT");
+  printf("Press '0' to EXIT\n\n");
   scanf("%c", &choice);
   printf("\n\n");
 
-  while(x == 0){
+ 
+
 
     switch(choice){
     case 't':
       printf("Enter string: ");
-      scanf("%s", &string);
-      char **tokens = tokenize(string);
-      printf("\n");
+      fgets(string, 100, stdin);
+      char **tokens = tokenize(string);      
       print_tokens(tokens);
       add_history(history,string);
       free_tokens(tokens);
@@ -45,6 +47,11 @@ int main(){
       char **token = tokenize(get_history(history, input));
       print_tokens(token);
       free_tokens(token);
+      break;
+    case '0':
+      printf("EXIT");
+      free_history(history);
+      x = 1;
       break;
    }
 

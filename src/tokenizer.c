@@ -33,22 +33,20 @@ int non_space_char(char c){
   zero-terminated str. Return a sero pointer if str does not contain any words. */
   char  *word_start(char *str){
     //while there's a space at the beg of str, keep moving on
-    while(space_char(*str)){
-	str++;
+    int i =0;
+    while(!non_space_char(str[i])){
+	i++;
       }
       //if not then return the pointer of the 1st character
-      return str;
+      return &str[i];
   }
 
 
 /*Returns a pointer terminator char following *word*/
     char *word_terminator(char *word){
-      //start at word start in case there was empty spaces in the beg so it could get rid of them
-      word = word_start(word);
-      //move through str/word until empty space
-      while(non_space_char(*word)){
-	  word++;
-	}
+      while(!space_char(*word)){
+	word ++;
+      }
       //
 	return word;
       }
@@ -57,9 +55,15 @@ int non_space_char(char c){
       int count_words(char *str){
 	int i = 0;
 	int count = 0;
-	while(str != word_terminator(str)){
-	  str = word_terminator(str);
-	  count++;
+	int count2 = 0;
+	while(*str){
+	  if(*str == '\t' || *str == ' ' || *str == '\n'){
+	    count2 = 0;
+	  }else if(count2 == 0){
+	    count2 = 1;
+	    count++;
+	  }
+	  str++;
 	}
 	return count;
       }
@@ -116,8 +120,5 @@ int non_space_char(char c){
    free(tokens);
  }
 
-int main(){
-  printf("hi");
-}
 
 #endif
